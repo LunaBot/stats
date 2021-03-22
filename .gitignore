@@ -1,0 +1,10 @@
+node_modules
+dist
+config.json
+servers.json
+.ultra.cache.json
+.DS_Store
+.env
+ca-certificate.crt
+.nyc_output
+data

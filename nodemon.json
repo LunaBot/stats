@@ -1,0 +1,8 @@
+{
+    "watch": [
+        "./src/**/*.ts"
+    ],
+    "exec": "npm run start-debug-server",
+    "ext": "js,mjs,json,ts",
+    "quiet": true
+}
