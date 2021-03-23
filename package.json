@@ -8,8 +8,8 @@
   },
   "scripts": {
     "prepare": "npm run build",
-    "start": "node ./dist/index.js",
-    "start-debug-server": "tsup ./src/index.ts > /dev/null && LOG_LEVEL=silly LOG_TRANSPORT=console node dist/index.js",
+    "start": "node ./dist/server.js",
+    "start-debug-server": "tsup ./src/server.ts > /dev/null && LOG_LEVEL=silly LOG_TRANSPORT=console node dist/server.js",
     "start-debug-client": "tsup ./src/demo.ts > /dev/null && LOG_LEVEL=silly LOG_TRANSPORT=console node dist/demo.js",
     "build": "npm run build-client && npm run build-server && npm run build-demo && npm run build-register",
     "build-client": "./node_modules/.bin/tsup ./src/client.ts",
