@@ -180,7 +180,9 @@ class Client {
     async sendStats() {
         const popularCommands = Array.from(this.commands.entries()).sort((a, b) => a[1] - b[1]).map(([name, count]) => ({ name, count }));
         const stats = {
+            // @ts-ignore
             servers: this.client.guilds.cache.size,
+            // @ts-ignore
             users: this.client.users.cache.size,
             commands: Array.from(this.commands.values()).reduce((a, b) => a + b, 0),
             popular: popularCommands,

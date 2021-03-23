@@ -2,7 +2,8 @@
   "name": "@lunabot/stats",
   "version": "0.0.1",
   "description": "",
-  "main": "dist/server.js",
+  "main": "dist/client.js",
+  "types": "dist/client.d.ts",
   "bin": {
     "register": "dist/register.js"
   },
@@ -12,7 +13,7 @@
     "start-debug-server": "tsup ./src/server.ts > /dev/null && LOG_LEVEL=silly LOG_TRANSPORT=console node dist/server.js",
     "start-debug-client": "tsup ./src/demo.ts > /dev/null && LOG_LEVEL=silly LOG_TRANSPORT=console node dist/demo.js",
     "build": "npm run build-client && npm run build-server && npm run build-demo && npm run build-register",
-    "build-client": "./node_modules/.bin/tsup ./src/client.ts",
+    "build-client": "./node_modules/.bin/tsup ./src/client.ts --dts",
     "build-server": "./node_modules/.bin/tsup ./src/server.ts",
     "build-demo": "./node_modules/.bin/tsup ./src/demo.ts",
     "build-register": "./node_modules/.bin/tsup ./src/register.ts",
