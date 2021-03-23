@@ -1,10 +1,17 @@
 # Stats
 
 
-### Installation
+## Installation
+
+Install the library using either `npm` or `pnpm`.
+If you're using `pnpm` please install `tsup` and `typescript` before installing stats.
 
 ```bash
-npm i github:lunabot/stats
+# npm
+npm i github:lunabot/stats#main
+
+# pnpm
+pnpm i github:lunabot/stats#main
 ```
 
 
