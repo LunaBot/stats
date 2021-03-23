@@ -97,6 +97,6 @@ wsServer.on('connection', (socket, request) => {
   socket.once('close', (code, reason) => closed(code, reason));
 });
 
-server.listen(3000, (...args) => {
-  console.log('Server started at ws://localhost:3000');
+server.listen(4000, (...args) => {
+  console.log('Server started at ws://localhost:4000');
 });

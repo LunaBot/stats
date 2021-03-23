@@ -1,16 +1,5 @@
-# Stats
-
-
-### Installation
-
-```bash
-npm i github:lunabot/stats
-```
-
-
-```ts
 import { Client as DiscordClient } from 'discord.js';
-import { createClient } from 'stats';
+import { createClient } from './client';
 
 (async () => {
     // Envs
@@ -39,7 +28,7 @@ import { createClient } from 'stats';
         apiKey,
         clientID,
         client,
-        silent: true
+        silent: false
     });
 
     // Bot's config
@@ -50,7 +39,6 @@ import { createClient } from 'stats';
     client.on('ready', async () => {
         // Connect to stats ws gateway
         await statsClient.connect().catch(error => {
-            // Don't log errors in production
             if (process.env.NODE_ENV === 'production') return;
             console.error(error);
         });
@@ -69,4 +57,3 @@ import { createClient } from 'stats';
     // Connect to discord's ws gateway
     await client.login(botToken);
 })();
-```
