@@ -42,4 +42,5 @@ import { createClient as createGraphqlClient } from 'graphql-ws';
 
     // Show API key
     console.log(`\nAPI key: %s\nYou won't be shown this again, please copy it down now!\n`, result.data.register.apiKey);
+    process.exit(0);
 })();

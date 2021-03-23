@@ -14,6 +14,15 @@ npm i github:lunabot/stats#main
 pnpm i github:lunabot/stats#main
 ```
 
+## Getting an API key
+
+Replace `ADD_CLIENT_ID_HERE` with your bot's client ID.
+This will print out an API key for you.
+```bash
+CLIENT_ID=ADD_CLIENT_ID_HERE ./node_modules/.bin/register
+```
+
+## Basic bot using stats
 
 ```ts
 import { Client as DiscordClient } from 'discord.js';
@@ -40,8 +49,13 @@ import { createClient } from 'stats';
         process.exit(1);
     }
 
-    // Clients
+    // Create discord.js client
     const client = new DiscordClient();
+    
+    // Create commands map
+    const commands = new Map();
+
+    // Create stats client
     const statsClient = createClient({
         apiKey,
         clientID,
@@ -64,12 +78,16 @@ import { createClient } from 'stats';
     });
 
     client.on('message', async (message) => {
+        // Bail if it's not using our prefix
         if (!message.content.startsWith(config.prefix)) return;
 
         // Get command name without the prefix
         const commandName = message.content.split(' ')[0].toLowerCase().substring(config.prefix.length);
 
-        // Command was used
+        // Bail if it's not a command we know
+        if (!commands.has(commandName)) return;
+
+        // Tell stats a command was used
         await statsClient.commandUsed(commandName);
     });
 
