@@ -246,7 +246,7 @@ class Client {
      */
     async startAutoPosting() {
         // Reconnect if we have to
-        if (!this.client) {
+        if (!this.graphqlWsClient) {
             await this.connect();
         }
 
