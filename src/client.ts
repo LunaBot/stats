@@ -62,7 +62,7 @@ export async function execute<T>(client: GraphqlWsClient, payload: SubscribePayl
 }
 
 class Client {
-    private url = 'wss://stats.lunabot.org/graphql';
+    private url = process.env.STATS_URL ?? 'wss://stats.lunabot.org/graphql';
     private graphqlWsClient?: GraphqlWsClient;
     private client: DiscordClient;
     private commands = new Map();
