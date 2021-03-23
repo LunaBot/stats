@@ -76,9 +76,7 @@ wsServer.on('connection', (socket, request) => {
             // - if init message, waits for connect
             // - if query/mutation, waits for result
             // - if subscription, waits for complete
-            const eventString = event.toString();
-            console.debug(eventString);
-            await cb(eventString);
+            await cb(event.toString());
           } catch (err) {
             // all errors that could be thrown during the
             // execution of operations, will be caught here
