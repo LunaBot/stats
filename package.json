@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
+  "bin": {
+    "register": "dist/register.js"
+  },
   "scripts": {
     "start": "node ./dist/index.js",
     "start-debug-server": "tsup ./src/index.ts > /dev/null && LOG_LEVEL=silly LOG_TRANSPORT=console node dist/index.js",
