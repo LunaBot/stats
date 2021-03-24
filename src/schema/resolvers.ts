@@ -1,6 +1,7 @@
+import EnMap from 'enmap';
 import { keys, generateKey } from '../auth';
 
-const db = new Map();
+const db = new EnMap('stats');
 
 const ONE_HOUR_IN_MILLISECONDS = (60 * 1000) * 60;
 
@@ -9,7 +10,7 @@ export const resolvers = {
         ping: () => 'pong',
         stats: (_, { clientID, ...others }, ...args) => {
             const row = db.get(clientID);
-            return row.stats ?? [];
+            return row ? row.stats : [];
         },
         config() {
             return {
