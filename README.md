@@ -4,7 +4,7 @@
 ## Installation
 
 Install the library using either `npm` or `pnpm`.
-If you're using `pnpm` please install `tsup` and `typescript` before installing stats.
+If you're using `pnpm` please install `tsup` and `typescript` in your local project before installing stats.
 
 ```bash
 # npm

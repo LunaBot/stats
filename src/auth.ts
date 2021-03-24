@@ -12,7 +12,7 @@ interface ConnectionParams {
 
 export const validate = async ({ clientID, apiKey }: ConnectionParams = {}) => {
     const throwErrorAndLog = (message) => {
-        console.log('[%] %s', clientID, message);
+        console.log('[%s] %s', clientID, message);
         throw new Error(message);
     }
 
