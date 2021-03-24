@@ -36,6 +36,7 @@ export const resolvers = {
 
             const key = generateKey();
             keys.set(clientID, key.apiKey);
+            console.log('Issued API key for %s', clientID);
             return {
                 apiKey: key.apiKey
             };
