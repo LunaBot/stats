@@ -10,11 +10,16 @@ interface ConnectionParams {
     apiKey?: string;
 }
 
+const throwErrorAndLog = (message) => {
+    console.log(message);
+    throw new Error(message);
+}
+
 export const validate = async ({ clientID, apiKey }: ConnectionParams = {}) => {
-    if (!clientID) throw new Error('Missing clientID');
-    if (!apiKey) throw new Error('Missing apiKey');
-    if (!keys.has(clientID)) throw new Error('Please register this clientID first!');
-    if (keys.get(clientID) !== apiKey) throw new Error('Invalid API key!');
+    if (!clientID) return throwErrorAndLog('Missing clientID');
+    if (!apiKey) return throwErrorAndLog('Missing apiKey');
+    if (!keys.has(clientID)) return throwErrorAndLog('Please register this clientID first!');
+    if (keys.get(clientID) !== apiKey) return throwErrorAndLog('Invalid API key!');
 
     // Success
     return true;
