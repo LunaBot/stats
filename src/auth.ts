@@ -10,12 +10,12 @@ interface ConnectionParams {
     apiKey?: string;
 }
 
-const throwErrorAndLog = (message) => {
-    console.log(message);
-    throw new Error(message);
-}
-
 export const validate = async ({ clientID, apiKey }: ConnectionParams = {}) => {
+    const throwErrorAndLog = (message) => {
+        console.log('[%] %s', clientID, message);
+        throw new Error(message);
+    }
+
     if (!clientID) return throwErrorAndLog('Missing clientID');
     if (!apiKey) return throwErrorAndLog('Missing apiKey');
     if (!keys.has(clientID)) return throwErrorAndLog('Please register this clientID first!');
