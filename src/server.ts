@@ -7,16 +7,6 @@ import { validate } from './auth';
 import { Forbidden } from './errors';
 import { gql } from 'apollo-server-express';
 
-const safeJsonParse = (text?: string) => {
-  if (!text) return {};
-
-  try {
-    return JSON.parse(text);
-  } catch {}
-
-  return {};
-};
-
 // extra in the context
 interface Extra {
   readonly request: http.IncomingMessage;
@@ -38,11 +28,15 @@ const gqlServer = makeServer<Extra>({
   },
   onSubscribe: async (ctx, message) => {
     const parsedQuery = gql`${message.payload.query}`;
+    const ops = parsedQuery.definitions.filter(definition => definition.kind === 'OperationDefinition');
     // @ts-expect-error
-    const queryName = parsedQuery.definitions[0].selectionSet.selections[0].name.value;
+    const operationName = ops[0].selectionSet.selections[0].name.value;
+    const hasApiKey = ctx.connectionParams?.apiKey;
+    const hasMultipleOperations = ops.length >= 2;
+    const isOperationPrivate = !['register', '__schema'].includes(operationName);
 
-    // Only allow the "register" mutation to bypass authentication
-    if (ctx.connectionParams?.apiKey ?? queryName !== 'register') {
+    // Only allow the "register" mutation and "__schema" query to bypass authentication
+    if (hasApiKey || hasMultipleOperations || isOperationPrivate) {
       await validate(ctx.connectionParams);
     }
   }
